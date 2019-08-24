@@ -15,6 +15,7 @@ namespace DeviceTesting
     {
         public MainPage()
         {
+            TheFramework.TheFramework.Init();
             InitializeComponent();
         }
     }

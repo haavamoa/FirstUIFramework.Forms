@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:fentries="clr-namespace:TheFramework.Entries;assembly=TheFramework"
+             xmlns:framework="http://TheFramework.com/"
              mc:Ignorable="d"
              x:Class="DeviceTesting.MainPage">
 
     <StackLayout>
-        <fentries:FrameworkEntry HasShadow="True" ShadowColor="Gray"/>
+        <framework:FrameworkEntry HasShadow="True" ShadowColor="Gray"/>
     </StackLayout>
 
 </ContentPage>
