@@ -5,4 +5,4 @@ using Xamarin.Forms.Internals;
 [assembly: XmlnsDefinition("http://TheFramework.com/", "TheFramework.Entries")]
 [assembly: XmlnsDefinition("http://TheFramework.com/", "TheFramework.ContentViews")]
 [assembly: XmlnsDefinition("http://TheFramework.com/", "TheFramework.Resources.Converters")]
-[assembly: XmlnsDefinition("http://TheFramework.com/", "TheFramework.Buttons")]
+[assembly: XmlnsDefinition("http://TheFramework.com/", "TheFramework.Resources.Buttons")]
