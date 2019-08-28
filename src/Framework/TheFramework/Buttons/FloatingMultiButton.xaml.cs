@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace TheFramework.Buttons
@@ -10,6 +12,9 @@ namespace TheFramework.Buttons
     public partial class FloatingMultiButton : ContentView
     {
         private bool m_hasAnimatedUp;
+        private const uint AnimationSpeed = 100;
+        private readonly Easing m_animationStyle = Easing.CubicIn;
+        private const int SpaceBetweenButtons = 55;
 
         public static readonly BindableProperty InteractiveButtonsProperty = BindableProperty.Create(
             nameof(InteractiveButtons),
@@ -22,8 +27,7 @@ namespace TheFramework.Buttons
             nameof(MainButtonHeightRequest),
             typeof(double),
             typeof(FloatingMultiButton),
-            70.0,
-            propertyChanged: OnMainButtonHeightRequestChanged);
+            70.0);
 
         public static readonly BindableProperty MainButtonBackgroundColorProperty = BindableProperty.Create(
             nameof(MainButtonBackgroundColor),
@@ -67,12 +71,6 @@ namespace TheFramework.Buttons
             set => SetValue(MainButtonBackgroundColorProperty, value);
         }
 
-        private static void OnMainButtonHeightRequestChanged(BindableObject bindable, object oldvalue, object newvalue)
-        {
-            var floatingMultiButton = (FloatingMultiButton)bindable;
-            floatingMultiButton.NavigationButtonGrid.HeightRequest += (double)newvalue;
-        }
-
         public double MainButtonWidthRequest
         {
             get => (double)GetValue(MainButtonWidthRequestProperty);
@@ -85,34 +83,34 @@ namespace TheFramework.Buttons
             set => SetValue(MainButtonHeightRequestProperty, value);
         }
 
-        private static void MainButtonChanged(BindableObject bindable, object oldvalue, object newvalue)
-        {
-            var floatingMultiButton = (FloatingMultiButton)bindable;
-            var mainButton = (Button)newvalue;
-            SetPlacementForMainButton(mainButton);
-            floatingMultiButton.NavigationButtonGrid.HeightRequest += mainButton.HeightRequest;
-            //MainButton.TranslationY = NavigationButtonGrid.HeightRequest - MainButton.HeightRequest;
-            mainButton.Clicked += floatingMultiButton.ToggleShowingButtons;
-        }
-
-        private static void SetPlacementForMainButton(Button mainButton)
-        {
-            mainButton.SetValue(Grid.ColumnProperty, 0);
-            mainButton.SetValue(Grid.ColumnSpanProperty, 3);
-            mainButton.SetValue(Grid.RowSpanProperty, 3);
-        }
-
-        private static readonly Button s_defaultMainButton = new Button() { HeightRequest = 70, WidthRequest = 70, CornerRadius = 35, };
-
         private static void OnInteractiveButtonsChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
             var floatingMultiButton = (FloatingMultiButton)bindable;
-            //FirstButton.TranslationY = NavigationButtonGrid.HeightRequest - MainButton.HeightRequest;
-            //SecondButton.TranslationY = NavigationButtonGrid.HeightRequest - MainButton.HeightRequest;
-            //ThirdButton.TranslationY = NavigationButtonGrid.HeightRequest - MainButton.HeightRequest;
+
+            //Clear the list and add interaction buttons first, then add main button at the end
+            //This is to avoid showing the interactive buttons on top of the main button when they animate
+            floatingMultiButton.NavigationButtonGrid.Children.Clear();
+            foreach (var interactiveButton in floatingMultiButton.InteractiveButtons)
+            {
+                floatingMultiButton.NavigationButtonGrid.Children.Add(interactiveButton);
+            }
+            floatingMultiButton.NavigationButtonGrid.Children.Add(floatingMultiButton.MainButton);
+
+            //Set height of the AbsoluteLayout in order to make sure that all buttons are not out of bounds
+            floatingMultiButton.NavigationButtonGrid.HeightRequest += floatingMultiButton.MainButton.HeightRequest;
             foreach (var interactiveButton in floatingMultiButton.InteractiveButtons)
             {
                 floatingMultiButton.NavigationButtonGrid.HeightRequest += interactiveButton.HeightRequest;
+            }
+
+            floatingMultiButton.NavigationButtonGrid.HeightRequest += SpaceBetweenButtons;
+
+            //Move all buttons to the bottom of the page and make sure interactive buttons are placed in the middle of the main button
+            floatingMultiButton.MainButton.TranslationY =
+                floatingMultiButton.NavigationButtonGrid.HeightRequest - floatingMultiButton.MainButton.HeightRequest;
+            foreach (var interactiveButton in floatingMultiButton.InteractiveButtons)
+            {
+                floatingMultiButton.TranslateToMiddleOfMainButton(interactiveButton);
             }
         }
 
@@ -129,35 +127,45 @@ namespace TheFramework.Buttons
 
         protected void ToggleShowingButtons(object sender, EventArgs e)
         {
-            uint speed = 100;
-            var style = Easing.CubicIn;
-            var spacebetweenbuttons = 55;
+            
             Device.BeginInvokeOnMainThread(
                 () =>
                 {
                     if (!m_hasAnimatedUp)
                     {
-                        FirstButton.TranslateTo(FirstButton.X, MainButton.TranslationY - MainButton.HeightRequest, speed, style);
-                        SecondButton.TranslateTo(
-                            SecondButton.X,
-                            MainButton.TranslationY - MainButton.HeightRequest - spacebetweenbuttons,
-                            speed,
-                            style);
-                        ThirdButton.TranslateTo(
-                            ThirdButton.X,
-                            MainButton.TranslationY - MainButton.HeightRequest - spacebetweenbuttons * 2,
-                            speed,
-                            style);
+                        foreach (var interactiveButton in InteractiveButtons)
+                        {
+                            var indexOfThisButton = InteractiveButtons.IndexOf(interactiveButton);
+
+                            TranslateFromMiddleOfMainButton(interactiveButton, indexOfThisButton);
+                            
+                        }
                     }
                     else
                     {
-                        ThirdButton.TranslateTo(ThirdButton.X, MainButton.TranslationY, speed, style);
-                        SecondButton.TranslateTo(SecondButton.X, MainButton.TranslationY, speed, style);
-                        FirstButton.TranslateTo(FirstButton.X, MainButton.TranslationY, speed, style);
+                        foreach (var interactiveButton in InteractiveButtons)
+                        {
+                            TranslateToMiddleOfMainButton(interactiveButton);
+                        }
                     }
 
                     m_hasAnimatedUp = !m_hasAnimatedUp;
                 });
+        }
+
+        protected void TranslateToMiddleOfMainButton(VisualElement button)
+        {
+
+            button.TranslateTo(MainButton.TranslationX+MainButton.WidthRequest/2-button.WidthRequest/2, MainButton.TranslationY+MainButton.HeightRequest/2-button.HeightRequest/2, AnimationSpeed, m_animationStyle);
+        }
+
+        protected void TranslateFromMiddleOfMainButton(VisualElement button, int spaceMultiplier)
+        {
+            button.TranslateTo(
+                MainButton.WidthRequest / 2 - button.WidthRequest / 2,
+                MainButton.TranslationY - MainButton.HeightRequest - SpaceBetweenButtons * spaceMultiplier,
+                AnimationSpeed,
+                m_animationStyle);
         }
     }
 }

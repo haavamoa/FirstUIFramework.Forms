@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:Converters="clr-namespace:TheFramework.Resources.Converters;"
+             xmlns:Converters="clr-namespace:TheFramework.Resources.Converters;assembly=TheFramework"
              mc:Ignorable="d"
              x:Class="TheFramework.Buttons.FloatingMultiButton"
              x:Name="this">
-    <Grid x:Name="NavigationButtonGrid"
-              Margin="15"
-            
-              HeightRequest="250">
-        <Grid.Resources>
+    <AbsoluteLayout x:Name="NavigationButtonGrid"
+          Margin="15"
+          IsClippedToBounds="True">
+        <!--<Grid.Resources>
             <x:Double x:Key="TranslationY">180</x:Double>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
@@ -23,48 +23,15 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ImageButton Grid.Row="1"
-                    Grid.Column="1"
-                    x:Name="FirstButton"
-                    HeightRequest="50"
-                    WidthRequest="50"
-                    CornerRadius="25"
-                    BackgroundColor="#FEC3C2"
-                    BorderColor="#6860A3"
-                    BorderWidth="2"
-            />
-        <ImageButton Grid.Row="1"
-                    Grid.Column="1"
-                    x:Name="SecondButton"
-                    HeightRequest="50"
-                    WidthRequest="50"
-                    CornerRadius="25"
-                    BackgroundColor="#FEC3C2"
-                    BorderColor="#6860A3"
-                    BorderWidth="2"
-                     />
-        <ImageButton Grid.Row="1"
-                    Grid.Column="1"
-                    x:Name="ThirdButton"
-                    HeightRequest="50"
-                    WidthRequest="50"
-                    CornerRadius="25"
-                    BackgroundColor="#FEC3C2"
-                    BorderColor="#6860A3"
-                    BorderWidth="2"
-                     />
+        </Grid.RowDefinitions>-->
 
         <Button x:Name="MainButton"
-                Grid.Column="2"
-                Grid.Row="2"
                 HeightRequest="{Binding Source={x:Reference this}, Path=MainButtonHeightRequest}"
                 WidthRequest="{Binding Source={x:Reference this}, Path=MainButtonWidthRequest}"
-                CornerRadius="{Binding Source={x:Reference this}, Path=HeightRequest, Converter={Converters:ValuesDividerConverter Divisor=2}}"
+                CornerRadius="{Binding Source={x:Reference this}, Path=MainButtonHeightRequest, Converter={Converters:ValuesDividerConverter Divisor=2}}"
                 BackgroundColor="{Binding Source={x:Reference this}, Path=MainButtonBackgroundColor}"
                 BorderColor="{Binding Source={x:Reference this}, Path=MainButtonBorderColor}"
                 BorderWidth="{Binding Source={x:Reference this}, Path=MainButtonBorderWidth}"
-                Clicked="ToggleShowingButtons"
-                />
-    </Grid>
+                Clicked="ToggleShowingButtons" />
+    </AbsoluteLayout>
 </ContentView>
