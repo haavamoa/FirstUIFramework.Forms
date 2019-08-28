@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceTesting", "DeviceTest
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{A788B68E-BE66-423F-9EE0-121C433CE2DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFramework", "Framework\TheFramework\TheFramework.csproj", "{61346A07-D000-46DD-AFA3-C935D83BD75A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheFramework", "Framework\TheFramework\TheFramework.csproj", "{61346A07-D000-46DD-AFA3-C935D83BD75A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFramework.Android", "Framework\TheFramework.Android\TheFramework.Android.csproj", "{02055083-8456-40FD-88F1-40EC94090131}"
 EndProject
