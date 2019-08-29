@@ -8,7 +8,6 @@ using Xamarin.Forms.Xaml;
 namespace TheFramework.Buttons
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    //[ContentProperty("InteractiveButtons")]
     public partial class FloatingMultiButton : ContentView
     {
         private bool m_hasAnimatedUp;
@@ -18,7 +17,7 @@ namespace TheFramework.Buttons
 
         public static readonly BindableProperty InteractiveButtonsProperty = BindableProperty.Create(
             nameof(InteractiveButtons),
-            typeof(IEnumerable<Button>),
+            typeof(IList<Button>),
             typeof(FloatingMultiButton),
             new List<Button>(),
             propertyChanged: OnInteractiveButtonsChanged);
@@ -114,9 +113,9 @@ namespace TheFramework.Buttons
             }
         }
 
-        public IEnumerable<Button> InteractiveButtons
+        public IList<Button> InteractiveButtons
         {
-            get => (IEnumerable<Button>)GetValue(InteractiveButtonsProperty);
+            get => (IList<Button>)GetValue(InteractiveButtonsProperty);
             set => SetValue(InteractiveButtonsProperty, value);
         }
 

@@ -10,20 +10,8 @@
              x:Name="this">
     <AbsoluteLayout x:Name="NavigationButtonGrid"
           Margin="15"
-          IsClippedToBounds="True">
-        <!--<Grid.Resources>
-            <x:Double x:Key="TranslationY">180</x:Double>
-        </Grid.Resources>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>-->
+          IsClippedToBounds="True"
+          BackgroundColor="Blue">
 
         <Button x:Name="MainButton"
                 HeightRequest="{Binding Source={x:Reference this}, Path=MainButtonHeightRequest}"
