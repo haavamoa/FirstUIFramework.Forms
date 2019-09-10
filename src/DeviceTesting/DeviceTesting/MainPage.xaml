@@ -3,9 +3,22 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:framework="http://TheFramework.com/"
+             xmlns:DeviceTesting="clr-namespace:DeviceTesting;assembly=DeviceTesting"
              mc:Ignorable="d"
-             x:Class="DeviceTesting.MainPage">
+             x:Class="DeviceTesting.MainPage"
+             x:Name="this">
+    <ContentPage.BindingContext>
+        <DeviceTesting:MyTestViewModel />
+    </ContentPage.BindingContext>
     <StackLayout>
+        <framework:FillingButton VerticalOptions="Start"
+                                 HorizontalOptions="Center"
+                                 Command="{Binding FillingButtonCommand}"
+                                 IsChecked="{Binding IsChecked}"
+                                 HeightRequest="70"
+                                 WidthRequest="70"
+                                 CornerRadius="35"
+                                 AnimationSpeed="700"/>
         <StackLayout.GestureRecognizers>
             <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
         </StackLayout.GestureRecognizers>
@@ -13,30 +26,25 @@
                                   ShadowColor="Gray" />
         <Label x:Name="Label" />
         <Label x:Name="NavigationButtonY" />
-        <AbsoluteLayout
-                        VerticalOptions="EndAndExpand"
+        <AbsoluteLayout VerticalOptions="EndAndExpand"
                         HorizontalOptions="Center">
             <AbsoluteLayout x:Name="ButtonsContainer"
                             HorizontalOptions="Center"
                             IsVisible="True"
                             BackgroundColor="Blue"
-                            HeightRequest="200"
-            >
+                            HeightRequest="200">
                 <Button x:Name="FirstButton"
                         HeightRequest="50"
                         WidthRequest="50"
-                        CornerRadius="25"
-                />
+                        CornerRadius="25" />
                 <Button x:Name="SecondButton"
                         HeightRequest="50"
                         WidthRequest="50"
-                        CornerRadius="25"
-                />
+                        CornerRadius="25" />
                 <Button x:Name="ThirdButton"
                         HeightRequest="50"
                         WidthRequest="50"
-                        CornerRadius="25"
-                />
+                        CornerRadius="25" />
             </AbsoluteLayout>
             <Button x:Name="NavigationButton"
                     HeightRequest="70"

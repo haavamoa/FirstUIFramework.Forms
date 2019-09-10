@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using DeviceTesting.Annotations;
 using Xamarin.Forms;
 
 namespace DeviceTesting
@@ -14,6 +13,7 @@ namespace DeviceTesting
     public partial class MainPage : ContentPage
     {
         private bool m_hasAnimatedUp;
+        private bool m_isChecked;
 
         public MainPage()
         {
@@ -27,36 +27,75 @@ namespace DeviceTesting
             var style = Easing.CubicIn;
             var spacebetweenbuttons = 55;
             Device.BeginInvokeOnMainThread(
-                 () =>
-            {
-                if (!m_hasAnimatedUp)
+                () =>
                 {
-                    FirstButton.TranslateTo(FirstButton.X, -(NavigationButton.Y+NavigationButton.HeightRequest), speed, style);
-                    SecondButton.TranslateTo(SecondButton.X, -(NavigationButton.Y + NavigationButton.HeightRequest) - spacebetweenbuttons, speed, style);
-                    ThirdButton.TranslateTo(ThirdButton.X, -(NavigationButton.Y + NavigationButton.HeightRequest) - spacebetweenbuttons * 2, speed, style);
-                }
-                else
-                {
-                    ThirdButton.TranslateTo(ThirdButton.X, 35 / 2, speed, style);
-                    SecondButton.TranslateTo(SecondButton.X, 35 / 2, speed, style);
-                    FirstButton.TranslateTo(FirstButton.X, 35 / 2, speed, style);
-                }
+                    if (!m_hasAnimatedUp)
+                    {
+                        FirstButton.TranslateTo(FirstButton.X, -(NavigationButton.Y + NavigationButton.HeightRequest), speed, style);
+                        SecondButton.TranslateTo(
+                            SecondButton.X,
+                            -(NavigationButton.Y + NavigationButton.HeightRequest) - spacebetweenbuttons,
+                            speed,
+                            style);
+                        ThirdButton.TranslateTo(
+                            ThirdButton.X,
+                            -(NavigationButton.Y + NavigationButton.HeightRequest) - spacebetweenbuttons * 2,
+                            speed,
+                            style);
+                    }
+                    else
+                    {
+                        ThirdButton.TranslateTo(ThirdButton.X, 35 / 2, speed, style);
+                        SecondButton.TranslateTo(SecondButton.X, 35 / 2, speed, style);
+                        FirstButton.TranslateTo(FirstButton.X, 35 / 2, speed, style);
+                    }
 
-                m_hasAnimatedUp = !m_hasAnimatedUp;
-            });
+                    m_hasAnimatedUp = !m_hasAnimatedUp;
+                });
         }
 
         private void PanGestureRecognizer_PanUpdated(object sender, PanUpdatedEventArgs e)
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                switch (e.StatusType)
+            Device.BeginInvokeOnMainThread(
+                () =>
                 {
-                    case GestureStatus.Running:
-                        Label.Text = e.TotalY.ToString();
-                        break;
-                }
-            });
+                    switch (e.StatusType)
+                    {
+                        case GestureStatus.Running:
+                            Label.Text = e.TotalY.ToString();
+                            break;
+                    }
+                });
+        }
+    }
+
+    public class MyTestViewModel : INotifyPropertyChanged
+    {
+        private bool m_isChecked;
+
+        public MyTestViewModel()
+        {
+            FillingButtonCommand = new Command(() => { IsChecked = !IsChecked; });
+        }
+
+        public ICommand FillingButtonCommand { get; }
+
+        public bool IsChecked
+        {
+            get => m_isChecked;
+            set
+            {
+                m_isChecked = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

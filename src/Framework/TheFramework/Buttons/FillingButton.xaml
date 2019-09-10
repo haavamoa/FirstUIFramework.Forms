@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TheFramework.Buttons.FillingButton"
+             x:Name="fillingButton">
+    <ContentView.Content>
+        <AbsoluteLayout>
+
+            <BoxView x:Name="outerCircle"
+                     HeightRequest="{Binding Source={x:Reference fillingButton}, Path=HeightRequest}"
+                     WidthRequest="{Binding Source={x:Reference fillingButton}, Path=WidthRequest}"
+                     CornerRadius="{Binding Source={x:Reference fillingButton}, Path=CornerRadius}"
+                     BackgroundColor="Gray">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={x:Reference fillingButton}, Path=Command}" CommandParameter="{Binding Source={x:Reference fillingButton}, Path=CommandParameter}" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <BoxView x:Name="innerCircle"
+                     HeightRequest="{Binding Source={x:Reference outerCircle}, Path=HeightRequest}"
+                     WidthRequest="{Binding Source={x:Reference outerCircle}, Path=WidthRequest}"
+                     CornerRadius="{Binding Source={x:Reference outerCircle}, Path=CornerRadius}"
+                     Scale="0"
+                     BackgroundColor="Blue"
+                     InputTransparent="True" />
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>
