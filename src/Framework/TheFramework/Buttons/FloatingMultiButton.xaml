@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"
+      encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:TheFramework.Resources.Converters;assembly=TheFramework"
+             mc:Ignorable="d"
+             x:Class="TheFramework.Buttons.FloatingMultiButton"
+             x:Name="this">
+    <AbsoluteLayout x:Name="NavigationButtonGrid"
+          Margin="15"
+          IsClippedToBounds="True"
+    >
+        <Button x:Name="MainButton"
+                BindingContext="{Binding Source={x:Reference this}}"
+                HeightRequest="{Binding MainButtonHeightRequest}"
+                WidthRequest="{Binding MainButtonWidthRequest}"
+                CornerRadius="{Binding MainButtonHeightRequest, Converter={Converters:ValuesDividerConverter Divisor=2}}"
+                BackgroundColor="{Binding MainButtonBackgroundColor}"
+                BorderColor="{Binding MainButtonBorderColor}"
+                BorderWidth="{Binding MainButtonBorderWidth}"
+                Clicked="ToggleShowingButtons" />
+    </AbsoluteLayout>
+</ContentView>

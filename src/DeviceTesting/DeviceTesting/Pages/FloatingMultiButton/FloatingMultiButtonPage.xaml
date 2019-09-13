@@ -1,0 +1,29 @@
+﻿<?xml version="1.0"
+      encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DeviceTesting.Pages.FloatingMultiButton.FloatingMultiButtonPage"
+             xmlns:framework="http://TheFramework.com/">
+    <ContentPage.Content>
+        <StackLayout>
+            <framework:FloatingMultiButton HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand"
+                                           MainButtonBorderWidth="2"
+                                           MainButtonBorderColor="Black"
+                                           MainButtonBackgroundColor="LightGray">
+                <framework:FloatingMultiButton.InteractiveButtons>
+                    <x:Array Type="{x:Type Button}">
+                        <Button HeightRequest="50"
+                                WidthRequest="50"
+                                CornerRadius="25"
+                                BorderWidth="2"
+                                BorderColor="Black" />
+                    </x:Array>
+                </framework:FloatingMultiButton.InteractiveButtons>
+            </framework:FloatingMultiButton>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
