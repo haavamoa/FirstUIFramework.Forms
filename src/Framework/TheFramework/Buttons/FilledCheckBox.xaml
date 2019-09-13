@@ -6,34 +6,41 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Converters="clr-namespace:TheFramework.Resources.Converters;assembly=TheFramework"
              mc:Ignorable="d"
-             x:Class="TheFramework.Buttons.FillingButton"
+             x:Class="TheFramework.Buttons.FilledCheckBox"
              x:Name="fillingButton">
     <ContentView.Content>
         <AbsoluteLayout BindingContext="{Binding Source={x:Reference fillingButton}}">
             <BoxView x:Name="border"
-                     HeightRequest="{Binding ButtonHeightRequest}"
-                     WidthRequest="{Binding ButtonWidthRequest}"
-                     CornerRadius="{Binding ButtonCornerRadius}"
-                     BackgroundColor="{Binding ButtonBorderColor}"
+                     HeightRequest="{Binding HeightRequest}"
+                     WidthRequest="{Binding WidthRequest}"
+                     CornerRadius="{Binding CornerRadius}"
+                     BackgroundColor="{Binding BorderColor}"
                      InputTransparent="True"
-                     IsVisible="False"/>
+                     IsVisible="False" />
             <BoxView x:Name="outerCircle"
-                     HeightRequest="{Binding ButtonHeightRequest}"
-                     WidthRequest="{Binding ButtonWidthRequest}"
-                     CornerRadius="{Binding ButtonCornerRadius}"
-                     BackgroundColor="{Binding ButtonColor}">
+                     HeightRequest="{Binding HeightRequest}"
+                     WidthRequest="{Binding WidthRequest}"
+                     CornerRadius="{Binding CornerRadius}"
+                     BackgroundColor="{Binding UnFillColor}">
                 <BoxView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Command}"
                                           CommandParameter="{Binding CommandParameter}" />
                 </BoxView.GestureRecognizers>
             </BoxView>
             <BoxView x:Name="innerCircle"
-                     HeightRequest="{Binding ButtonHeightRequest}"
-                     WidthRequest="{Binding ButtonWidthRequest}"
-                     CornerRadius="{Binding ButtonCornerRadius}"
+                     HeightRequest="{Binding HeightRequest}"
+                     WidthRequest="{Binding WidthRequest}"
+                     CornerRadius="{Binding CornerRadius}"
                      Scale="0"
                      BackgroundColor="{Binding FillColor}"
                      InputTransparent="True" />
+            <Image x:Name="image"
+                   Source="{Binding ImageSource}"
+                   HeightRequest="{Binding ImageHeightRequest}"
+                   WidthRequest="{Binding ImageWidthRequest}"
+                   IsVisible="False"
+                   InputTransparent="True"
+                   />
         </AbsoluteLayout>
     </ContentView.Content>
 </ContentView>

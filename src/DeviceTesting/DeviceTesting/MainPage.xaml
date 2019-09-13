@@ -11,17 +11,22 @@
         <DeviceTesting:MyTestViewModel />
     </ContentPage.BindingContext>
     <StackLayout>
-        <framework:FillingButton VerticalOptions="Start"
+        <framework:FilledCheckBox VerticalOptions="Start"
                                  HorizontalOptions="Center"
                                  Command="{Binding FillingButtonCommand}"
                                  IsChecked="{Binding IsChecked}"
-                                 ButtonHeightRequest="70"
-                                 ButtonWidthRequest="70"
-                                 ButtonCornerRadius="35"
-                                 ButtonBorderWidth="1"
+                                 HeightRequest="70"
+                                 WidthRequest="70"
+                                 CornerRadius="35"
+                                 BorderWidth="1"
+                                 ImageHeightRequest="35"
+                                 ImageWidthRequest="35"
+                                 ImageSource="checkmark.png"
                                  AnimationSpeed="200"
-                                 FillColor="LightGreen"
-                                 ButtonColor="LightGray"/>
+                                 FillColor="#98B2AE"
+                                 UnFillColor="LightGray"
+                                 
+        />
         <Button 
             VerticalOptions="Start"
                     HorizontalOptions="Center"

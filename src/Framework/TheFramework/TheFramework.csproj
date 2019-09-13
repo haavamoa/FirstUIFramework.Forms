@@ -10,9 +10,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Buttons\FillingButton.xaml">
+    <Compile Update="Buttons\FilledCheckBox.xaml.cs">
+      <DependentUpon>FilledCheckBox.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Buttons\FilledCheckBox.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Buttons\FillingButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
 </Project>
