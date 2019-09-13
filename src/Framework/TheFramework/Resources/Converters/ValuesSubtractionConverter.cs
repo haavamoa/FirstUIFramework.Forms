@@ -7,24 +7,23 @@ using Xamarin.Forms.Xaml;
 
 namespace TheFramework.Resources.Converters
 {
-    public class ValuesAdditionConverter : IValueConverter, IMarkupExtension
+    public class ValuesSubtractionConverter : IMarkupExtension, IValueConverter
     {
-        public int ToAdd { get; set; }
+        public object ProvideValue(IServiceProvider serviceProvider) => this;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (int.TryParse(value.ToString(), out var intValue))
+            if (int.TryParse(value.ToString(), out var intValue) && int.TryParse(parameter.ToString(), out var toSubtract))
             {
-                return intValue + ToAdd;
+                return intValue - toSubtract;
             }
 
-            throw new ArgumentException("Value should be of type int");
+            throw new ArgumentException("Value / Parameter should be of type int");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
-
-        public object ProvideValue(IServiceProvider serviceProvider) => this;
     }
 }

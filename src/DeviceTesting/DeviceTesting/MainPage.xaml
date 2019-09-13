@@ -15,11 +15,23 @@
                                  HorizontalOptions="Center"
                                  Command="{Binding FillingButtonCommand}"
                                  IsChecked="{Binding IsChecked}"
-                                 HeightRequest="70"
-                                 WidthRequest="70"
-                                 CornerRadius="35"
-                                 AnimationSpeed="700"/>
-        <StackLayout.GestureRecognizers>
+                                 ButtonHeightRequest="70"
+                                 ButtonWidthRequest="70"
+                                 ButtonCornerRadius="35"
+                                 ButtonBorderWidth="1"
+                                 AnimationSpeed="200"
+                                 FillColor="LightGreen"
+                                 ButtonColor="LightGray"/>
+        <Button 
+            VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    WidthRequest="70"
+                    HeightRequest="70"
+                    CornerRadius="35"
+                    BorderColor="Black"
+                    BorderWidth="1"/>
+        
+            <StackLayout.GestureRecognizers>
             <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
         </StackLayout.GestureRecognizers>
         <framework:FrameworkEntry HasShadow="True"
