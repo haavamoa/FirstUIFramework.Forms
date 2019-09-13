@@ -26,4 +26,20 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Pages\FilledCheckBox\FilledCheckBoxPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\FilledCheckBox\FilledCheckBoxPage.xaml.cs">
+      <DependentUpon>FilledCheckBoxPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

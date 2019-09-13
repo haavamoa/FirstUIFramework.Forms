@@ -6,16 +6,19 @@ namespace DeviceTesting
 {
     public partial class App : Application
     {
+        private readonly MainPage m_mainpage;
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            m_mainpage = new MainPage();
+            MainPage = new NavigationPage(m_mainpage);
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            m_mainpage.OnStart();
         }
 
         protected override void OnSleep()

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:framework="http://TheFramework.com/"
+             xmlns:FilledCheckbox="clr-namespace:DeviceTesting.Pages.FilledCheckbox"
+             x:Class="DeviceTesting.Pages.FilledCheckbox.FilledCheckBoxPage"
+             x:DataType="FilledCheckbox:FilledCheckBoxViewModel"
+             Title="FilledCheckBox">
+    <ContentPage.BindingContext>
+        <FilledCheckbox:FilledCheckBoxViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <framework:FilledCheckBox VerticalOptions="CenterAndExpand"
+                                      HorizontalOptions="CenterAndExpand"
+                                      Command="{Binding Command}"
+                                      IsChecked="{Binding IsChecked}"
+                                      HeightRequest="140"
+                                      WidthRequest="140"
+                                      CornerRadius="70"
+                                      BorderWidth="1"
+                                      ImageHeightRequest="35"
+                                      ImageWidthRequest="35"
+                                      ImageSource="checkmark.png"
+                                      AnimationSpeed="200"
+                                      FillColor="#98B2AE"
+                                      UnFillColor="LightGray"
+                                 
+            />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
