@@ -9,6 +9,11 @@ namespace DeviceTesting.Pages.FilledCheckbox
     public class FilledCheckBoxViewModel : INotifyPropertyChanged   
     {
         private bool m_isChecked;
+        private double m_heightRequest = 140;
+        private double m_widthRequest = 140;
+        private double m_cornerRadius = 70;
+        private string m_fillColor = "#98B2AE";
+        private string m_unFillColor = "LightGray";
 
         public FilledCheckBoxViewModel()
         {
@@ -23,6 +28,56 @@ namespace DeviceTesting.Pages.FilledCheckbox
             set
             {
                 m_isChecked = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double HeightRequest
+        {
+            get => m_heightRequest;
+            set
+            {
+                m_heightRequest = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double WidthRequest
+        {
+            get => m_widthRequest;
+            set
+            {
+                m_widthRequest = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public double CornerRadius
+        {
+            get => m_cornerRadius;
+            set
+            {
+                m_cornerRadius = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string FillColor
+        {
+            get => m_fillColor;
+            set
+            {
+                m_fillColor = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string UnFillColor
+        {
+            get => m_unFillColor;
+            set
+            {
+                m_unFillColor = value; 
                 OnPropertyChanged();
             }
         }

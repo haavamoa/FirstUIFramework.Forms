@@ -18,18 +18,57 @@
                                       HorizontalOptions="CenterAndExpand"
                                       Command="{Binding Command}"
                                       IsChecked="{Binding IsChecked}"
-                                      HeightRequest="140"
-                                      WidthRequest="140"
-                                      CornerRadius="70"
+                                      HeightRequest="{Binding HeightRequest}"
+                                      WidthRequest="{Binding WidthRequest}"
+                                      CornerRadius="{Binding CornerRadius}"
                                       BorderWidth="1"
                                       ImageHeightRequest="35"
                                       ImageWidthRequest="35"
                                       ImageSource="checkmark.png"
                                       AnimationSpeed="200"
-                                      FillColor="#98B2AE"
-                                      UnFillColor="LightGray"
+                                      FillColor="{Binding FillColor}"
+                                      UnFillColor="{Binding UnFillColor}"
                                  
             />
+            <Grid Margin="5" Padding="5" BackgroundColor="LightGray" VerticalOptions="End" HorizontalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Configuration" FontSize="Title"/>
+                <StackLayout Grid.Row="1" Grid.Column="0">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="HeightRequest" VerticalOptions="Center"/>
+                        <Entry Keyboard="Numeric" Text="{Binding HeightRequest}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="1">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="WidthRequest" VerticalOptions="Center"/>
+                        <Entry Keyboard="Numeric" Text="{Binding WidthRequest}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="2" Grid.Column="0">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="CornerRadius" VerticalOptions="Center"/>
+                        <Entry Keyboard="Numeric" Text="{Binding CornerRadius}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                    <Label Text="FillColor" VerticalOptions="Center"/>
+                        <Entry Text="{Binding FillColor}"/>
+                    </StackLayout>
+                <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                    <Label Text="UnFillColor" VerticalOptions="Center"/>
+                    <Entry Text="{Binding UnFillColor}"/>
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
