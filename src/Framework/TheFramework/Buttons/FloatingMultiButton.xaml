@@ -11,15 +11,15 @@
     <AbsoluteLayout x:Name="NavigationButtonGrid"
           Margin="15"
           IsClippedToBounds="True"
-          BackgroundColor="Blue">
-
+    >
         <Button x:Name="MainButton"
-                HeightRequest="{Binding Source={x:Reference this}, Path=MainButtonHeightRequest}"
-                WidthRequest="{Binding Source={x:Reference this}, Path=MainButtonWidthRequest}"
-                CornerRadius="{Binding Source={x:Reference this}, Path=MainButtonHeightRequest, Converter={Converters:ValuesDividerConverter Divisor=2}}"
-                BackgroundColor="{Binding Source={x:Reference this}, Path=MainButtonBackgroundColor}"
-                BorderColor="{Binding Source={x:Reference this}, Path=MainButtonBorderColor}"
-                BorderWidth="{Binding Source={x:Reference this}, Path=MainButtonBorderWidth}"
+                BindingContext="{Binding Source={x:Reference this}}"
+                HeightRequest="{Binding MainButtonHeightRequest}"
+                WidthRequest="{Binding MainButtonWidthRequest}"
+                CornerRadius="{Binding MainButtonHeightRequest, Converter={Converters:ValuesDividerConverter Divisor=2}}"
+                BackgroundColor="{Binding MainButtonBackgroundColor}"
+                BorderColor="{Binding MainButtonBorderColor}"
+                BorderWidth="{Binding MainButtonBorderWidth}"
                 Clicked="ToggleShowingButtons" />
     </AbsoluteLayout>
 </ContentView>

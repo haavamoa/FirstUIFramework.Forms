@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using DeviceTesting.Pages.FilledCheckbox;
+using DeviceTesting.Pages.FloatingMultiButton;
 using Xamarin.Forms;
 
 namespace DeviceTesting
@@ -21,6 +22,8 @@ namespace DeviceTesting
             {
                 case "FilledCheckBox":
                     return new FilledCheckBoxPage();
+                case "FloatingMultiButton":
+                    return new FloatingMultiButtonPage();
                 default:
                     return new MainPage();
             }

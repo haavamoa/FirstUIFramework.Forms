@@ -32,13 +32,13 @@ namespace TheFramework.Buttons
             nameof(MainButtonBackgroundColor),
             typeof(Color),
             typeof(FloatingMultiButton),
-            Color.Gray);
+            Color.LightGray);
 
         public static readonly BindableProperty MainButtonBorderColorProperty = BindableProperty.Create(
             nameof(MainButtonBorderColor),
             typeof(Color),
             typeof(FloatingMultiButton),
-            MainButtonBackgroundColorProperty.DefaultValue);
+            Color.Black);
 
         public static readonly BindableProperty MainButtonBorderWidthProperty = BindableProperty.Create(
             nameof(MainButtonBorderWidth),

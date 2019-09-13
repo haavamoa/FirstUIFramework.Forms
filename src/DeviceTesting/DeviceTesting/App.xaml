@@ -7,6 +7,5 @@
              mc:Ignorable="d"
              x:Class="DeviceTesting.App">
     <Application.Resources>
-        <DeviceTesting:ViewModelLocator x:Key="viewModelLocator" />
     </Application.Resources>
 </Application>

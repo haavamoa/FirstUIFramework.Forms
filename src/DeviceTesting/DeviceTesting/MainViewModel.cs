@@ -13,7 +13,7 @@ namespace DeviceTesting
         public MainViewModel()
         {
             NavigateToCommand = new Command(NavigateTo);
-            Functionality = new ObservableCollection<string>() { "FilledCheckBox" };
+            Functionality = new ObservableCollection<string>() { "FilledCheckBox", "FloatingMultiButton" };
         }
 
         public void Initialize(IFunctionalityNavigationService functionalityNavigationService)
