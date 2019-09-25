@@ -8,7 +8,6 @@ namespace DeviceTesting.Pages.FilledCheckbox
     {
         public FilledCheckBoxPage()
         {
-            TheFramework.TheFramework.Init();
             InitializeComponent();
         }
     }

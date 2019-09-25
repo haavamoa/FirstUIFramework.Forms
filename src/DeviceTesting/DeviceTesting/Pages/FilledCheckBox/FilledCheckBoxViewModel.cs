@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using DeviceTesting.Annotations;
@@ -9,10 +10,20 @@ namespace DeviceTesting.Pages.FilledCheckbox
     public class FilledCheckBoxViewModel : INotifyPropertyChanged   
     {
         private bool m_isChecked;
+        private double m_heightRequest = 140;
+        private double m_widthRequest = 140;
+        private double m_cornerRadius = 70;
+        private string m_fillColor = "#98B2AE";
+        private string m_unFillColor = "LightGray";
 
         public FilledCheckBoxViewModel()
         {
-            Command = new Command(() => IsChecked = !IsChecked);    
+            Command = new Command(() => IsChecked = !IsChecked, CanExecute);    
+        }
+
+        private bool CanExecute()
+        {
+            return true;
         }
 
         public ICommand Command { get; }
@@ -24,6 +35,73 @@ namespace DeviceTesting.Pages.FilledCheckbox
             {
                 m_isChecked = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public double HeightRequest
+        {
+            get => m_heightRequest;
+            set
+            {
+                m_heightRequest = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double WidthRequest
+        {
+            get => m_widthRequest;
+            set
+            {
+                m_widthRequest = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public double CornerRadius
+        {
+            get => m_cornerRadius;
+            set
+            {
+                m_cornerRadius = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string FillColor
+        {
+            get => m_fillColor;
+            set
+            {
+                try
+                {
+                    new ColorTypeConverter().ConvertFromInvariantString(value);
+                    m_fillColor = value;
+                    OnPropertyChanged();
+                }
+                catch(Exception e)
+                {
+                    //Swallow it.
+                }
+            }
+        }
+
+        public string UnFillColor
+        {
+            get => m_unFillColor;
+            set
+            {
+                try
+                {
+                    new ColorTypeConverter().ConvertFromInvariantString(value);
+                    m_unFillColor = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception e)
+                {
+                    //Swallow it.
+                }
+              
             }
         }
 
