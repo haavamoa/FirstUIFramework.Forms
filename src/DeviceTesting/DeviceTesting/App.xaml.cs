@@ -13,6 +13,7 @@ namespace DeviceTesting
             InitializeComponent();
 
             m_mainpage = new MainPage();
+            //TheFramework.TheFramework.Init();
             MainPage = new NavigationPage(m_mainpage);
         }
 

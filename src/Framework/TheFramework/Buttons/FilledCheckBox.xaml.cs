@@ -197,7 +197,6 @@ namespace TheFramework.Buttons
             {
                 outerCircle.Scale = scale;
                 border.IsVisible = true;
-
             }
         }
 

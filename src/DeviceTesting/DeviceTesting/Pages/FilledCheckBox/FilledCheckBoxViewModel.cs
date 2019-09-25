@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using DeviceTesting.Annotations;
@@ -17,7 +18,12 @@ namespace DeviceTesting.Pages.FilledCheckbox
 
         public FilledCheckBoxViewModel()
         {
-            Command = new Command(() => IsChecked = !IsChecked);    
+            Command = new Command(() => IsChecked = !IsChecked, CanExecute);    
+        }
+
+        private bool CanExecute()
+        {
+            return true;
         }
 
         public ICommand Command { get; }
@@ -67,8 +73,16 @@ namespace DeviceTesting.Pages.FilledCheckbox
             get => m_fillColor;
             set
             {
-                m_fillColor = value; 
-                OnPropertyChanged();
+                try
+                {
+                    new ColorTypeConverter().ConvertFromInvariantString(value);
+                    m_fillColor = value;
+                    OnPropertyChanged();
+                }
+                catch(Exception e)
+                {
+                    //Swallow it.
+                }
             }
         }
 
@@ -77,8 +91,17 @@ namespace DeviceTesting.Pages.FilledCheckbox
             get => m_unFillColor;
             set
             {
-                m_unFillColor = value; 
-                OnPropertyChanged();
+                try
+                {
+                    new ColorTypeConverter().ConvertFromInvariantString(value);
+                    m_unFillColor = value;
+                    OnPropertyChanged();
+                }
+                catch (Exception e)
+                {
+                    //Swallow it.
+                }
+              
             }
         }
 

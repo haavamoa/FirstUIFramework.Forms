@@ -19,7 +19,8 @@
                     <ViewCell>
                         <Button Command="{Binding Source={x:Reference this}, Path=NavigateCommand}"
                                 CommandParameter="{Binding .}"
-                                Text="{Binding .}" />
+                                Text="{Binding .}"
+                                />
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
