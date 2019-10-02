@@ -1,0 +1,33 @@
+﻿<?xml version="1.0"
+      encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Expander="clr-namespace:DeviceTesting.Pages.Expander;assembly=DeviceTesting"
+             xmlns:framework="http://TheFramework.com/"
+             mc:Ignorable="d"
+             x:Class="DeviceTesting.Pages.Expander.ExpanderPage"
+             x:DataType="Expander:ExpanderViewModel">
+    <ContentPage.BindingContext>
+        <Expander:ExpanderViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <framework:Expander 
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+        >
+            <framework:Expander.MainContent>
+                <Label Text="MyText" />
+            </framework:Expander.MainContent>
+            <framework:Expander.ExpandedContent>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="My other label" />
+                    <Label Text="My other label" />
+                    <Label Text="My other label" />
+                    <Label Text="My other label" />
+                </StackLayout>
+            </framework:Expander.ExpandedContent>
+        </framework:Expander>
+    </ContentPage.Content>
+</ContentPage>
